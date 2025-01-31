@@ -1,0 +1,39 @@
+.graph-container{
+    width: 350px;
+    height: 350px;
+    border-radius: 20px;
+    background-color: var(--opacity-color);
+    background-image: url("/public/cat.jpeg");
+    background-size: 100%;
+    padding: 5px;
+}
+
+@media (max-width: 790px) {
+    .graph-container{
+        width: 290px;
+        height: 290px;
+    }
+}
+
+.graph{
+    width: 100%;
+    height: 100%;
+    user-select: none;
+}
+
+.axis, .arrow{
+    stroke: var(--text-color);
+}
+
+.label, .arrow {
+    font-family: serif;
+    fill: var(--text-color);
+}
+
+.figure{
+    fill: var(--main-color);
+}
+
+.point{
+    r: 5;
+}

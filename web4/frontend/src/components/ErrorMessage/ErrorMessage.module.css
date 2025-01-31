@@ -1,0 +1,4 @@
+.error-message {
+    color: var(--invalid-color);
+    text-align: center;
+}

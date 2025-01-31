@@ -1,0 +1,52 @@
+.history-table-container {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.menu-user-info-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 2em;
+    border: 1px solid var(--main-color);
+    box-shadow: 0 0 5px 0 var(--main-color);
+    background-color: var(--background-color);
+}
+
+.username {
+    color: var(--main-color-dark);
+}
+
+.graph-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px;
+    border: 1px solid var(--main-color);
+    box-shadow: 5px 0 5px 5px var(--main-color);
+    background-color: var(--background-color);
+
+}
+
+@media (max-width: 1186px) {
+    .graph-form-container {
+        flex-direction: column;
+    }
+    .points {
+        width: 100%;
+        padding:10px;
+    }
+}

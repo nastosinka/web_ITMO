@@ -1,0 +1,11 @@
+:root {
+    --background-color: #ffffff;
+    --text-color: #440d9d;
+    --main-color: #6070AC;
+    --main-color-light: #6070AC;
+    --main-color-dark: #440d9d;
+    --opacity-color: rgba(255, 255, 255, 0.2);
+    --valid-color: green;
+    --invalid-color: red;
+
+}

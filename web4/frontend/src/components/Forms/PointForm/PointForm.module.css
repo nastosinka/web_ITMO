@@ -1,0 +1,20 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 200px;
+    gap: 10px;
+}
+/* Медиазапрос для экранов шириной меньше 700px */
+/* Медиазапрос для экранов шириной меньше 700px */
+@media (max-width: 700px) {
+    .input-container {
+        width: 100%; /* Растягиваем содержимое контейнера на всю ширину */
+        display: flex;
+        flex-direction: column; /* Элементы внутри контейнера по-прежнему будут располагаться вертикально */
+    }
+
+    button {
+        width: 100%; /* Кнопка также растягивается на всю ширину */
+    }
+}

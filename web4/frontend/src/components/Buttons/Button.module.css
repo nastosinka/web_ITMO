@@ -1,0 +1,40 @@
+.like-button {
+    transition: all .3s ease;
+    color: #fff;
+    background-color : var(--main-color);
+    height: 30px;
+}
+
+.button {
+    transition: all .3s ease;
+    color: var(--main-color-dark);
+    background-color : #fff;
+    height: 30px;
+}
+
+.button:hover {
+    color: white;
+    background-color: var(--main-color-dark);
+}
+
+.button1 {
+    transition: all .3s ease;
+    color: #fff;
+    background-color: var(--main-color-dark);
+    height: 30px;
+}
+
+.button1:hover {
+    color: var(--main-color-dark);
+    background-color: #fff;
+}
+
+.button1:hover > a {
+    color: var(--main-color-dark);
+}
+.button1 > a {
+    color: #fff;
+}
+.button:disabled {
+    cursor: not-allowed;
+}

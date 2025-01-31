@@ -1,0 +1,13 @@
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: var(--background-color);
+}
+
+td, th {
+    border: 1px solid var(--main-color);
+    padding: 5px;
+    word-break: normal;
+    text-align: center;
+}

@@ -1,0 +1,43 @@
+.button-group {
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 5px;
+}
+
+@media (max-width: 700px) {
+    .button-group {
+        display: flex;  /* Выстраиваем кнопки в строку */
+        flex-direction: row;  /* Горизонтальное расположение кнопок */
+        gap: 10px;  /* Расстояние между кнопками */
+        flex-wrap: wrap;  /* Позволяем кнопкам переноситься на следующую строку, если не помещаются */
+    }
+    .button-group button {
+        display: flex;
+        width: 100%;
+        max-width: 150px;  /* Ограничиваем максимальную ширину кнопки */
+        padding: 10px;  /* Добавляем отступы внутри кнопок */
+        box-sizing: border-box;  /* Включаем отступы и границы в расчет ширины */
+
+    }
+}
+
+.button {
+    padding: 10px 15px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    background-color: #f0f0f0;
+}
+
+.active-button {
+    background-color: #007bff;
+    color: white;
+}
+.active-button:hover{
+    background-color: #0056b3;
+}

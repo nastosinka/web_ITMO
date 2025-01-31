@@ -50,26 +50,20 @@ tasks.create("deploy") {
     dependsOn("jar")
 
     doLast {
-        val user = (System.getenv("DEPLOYUSER") ?: "s409284")
-        val userAndHost : String = user + "@" + (System.getenv ("DEPLOYHOST")  ?: "helios.cs.ifmo.ru")
+        val user = (System.getenv("DEPLOYUSER") ?: "")
+        val userAndHost : String = user + "@" + (System.getenv ("DEPLOYHOST")  ?: "server.ru")
 
-        val pwd : String = System.getenv("DEPLOYPWD") ?: "neVZ>6891"
+        val pwd : String = System.getenv("DEPLOYPWD") ?: ""
 
         println("$userAndHost :$pwd")
 
-//        exec {
-//            workingDir(".")
-////            commandLine("pscp", "-pw", pwd, "-P", 2222, "${project.rootDir}/static_content/index.*", "${project.rootDir}/static_content/images/**", "$userAndHost:/home/studs/$user/www/")
-//        }
+
 
         exec {
             workingDir(".")
             commandLine("pscp", "-pw", pwd, "-P", 2222, "${project.rootDir}/build/libs/**.jar", "$userAndHost:/home/studs/$user/web/httpd-root/fcgi-bin/")
         }
 
-//        exec {
-//            workingDir(".")
-//            commandLine("pscp", "-pw", pwd, "-P", 2222, "${project.rootDir}/conf/**.conf", "$userAndHost:/home/studs/$user/httpd-root/conf/")
-//        }
+
     }
 }

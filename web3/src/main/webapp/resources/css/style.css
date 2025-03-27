@@ -1,0 +1,117 @@
+* {
+    cursor: url("https://i.postimg.cc/90gM1DwV/1.png"), pointer;
+    margin: 0;
+}
+.result-table-width {
+    width: 80%; /* Уменьшаем ширину таблицы на 20% */
+}
+body {
+    margin: 10px;
+}
+td, th {
+    border: 1px solid black;
+}
+#main-grid {
+    width: 100%;
+    margin: auto;
+}
+.content-plate {
+    padding: 10px;
+    vertical-align: top;
+    text-align: center;
+}
+#result-grid {
+    width: 30%;
+}
+#result {
+    width: 70%;
+    vertical-align: top;
+    height: 200px;
+    overflow: auto;
+
+}
+#header-grid {
+    background-color: #6070AC;
+}
+#header-bottom {
+    background-color: #405090;
+}
+.image-container {
+    width: 20%;
+    text-align: center;
+    background-image: url("/resources/css/cat.jpeg");
+    background-size: 100%;
+    table-layout: fixed;
+}
+.scroll-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    overflow: auto;
+
+}
+#resultTable {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+#resultTable tr {
+    height: 20%;
+}
+#graph {
+    width: 100%;
+}
+
+.scroll-table {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+.coords-col {
+    width: 12%;
+}
+
+.time-col {
+    width: 25%;
+}
+#values {
+    width: 100%;
+}
+.active {
+    border-style: inset;
+}
+.non-active {
+    border-style: none;
+}
+
+.button {
+    height: 100%;
+    width: 100%;
+    font-family: "Open Sans", "Arial", sans-serif;
+    color: #ffffff;
+    background-color: #5843df;
+    border: 1%;
+    border-color: #440d9d;
+    display: flex;
+    align-items: center;
+}
+
+.button:hover {
+    background-color: #440d9d;
+}
+
+#pagination {
+    height: 30px;
+    background-color: #6070AC;
+}
+#pagination input {
+    width: 20%;
+    display: inline-block;
+    align-items: center;
+    align-self: center;
+
+}
+#test {
+    padding-left: 5%;
+}

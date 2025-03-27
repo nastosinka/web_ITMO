@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<!-- здесь есть контейнер для точек но он не заполняется ничем ?)-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Помогите 3.0</title>
+
+    <h:outputStylesheet name="css/style.css" />
+    <h:outputScript name="js/main.js" />
+</h:head>
+
+<h:body>
+    <table id="main-grid">
+        <tr>
+            <td id="header-grid" colspan="2">
+                <h2>Осинкина Анастасия Викторовна</h2>
+                <h3>Группа P3220</h3>
+            </td>
+            <td id="header-bottom"> вариант 409284</td>
+        </tr>
+        <tr>
+            <td class="content-plate" id="graph-plate">
+                <h4>График мяуканья</h4>
+            </td>
+            <td class="content-plate" id="result-grid"><h4>Таблица мяуканья</h4></td>
+            <td class="content-plate">
+                <h4>Координаты глажки</h4>
+            </td>
+        </tr>
+        <tr>
+            <td class="image-container" rowspan="2">
+                <h:form id="graphForm">
+                    <h:inputHidden id="xGraph" value="#{inputBean.XGraph}" />
+                    <h:inputHidden id="yGraph" value="#{inputBean.YGraph}" />
+                    <h:inputHidden id="rGraph" value="#{inputBean.r}" />
+                    <div id="graphContainer">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="400px" height="400px" class="svgClass" id="graphSvg" onclick="svgHandler(event)">
+                            <!--<canvas id="graphic" width="400" height="400">
+                            </canvas>-->
+                            <line x1="0" x2="400" y1="200" y2="200" stroke="blue" stroke-width="2"/> <!-- Ось X -->
+                            <line x1="200" x2="200" y1="0" y2="400" stroke="blue" stroke-width="2"/> <!-- Ось Y -->
+
+                            <!-- Стрелки на осях -->
+                            <polygon points="400,200 390,195 390,205" fill="blue"/>
+                            <!-- igrek -->
+                            <polygon points="200,0 195,10 205,10" fill="blue"/>
+
+                            <circle cx="100" cy="200" r="3" fill="blue"/>
+                            <circle cx="150" cy="200" r="3" fill="blue"/>
+                            <circle cx="250" cy="200" r="3" fill="blue"/>
+                            <circle cx="300" cy="200" r="3" fill="blue"/>
+                            <circle cx="200" cy="100" r="3" fill="blue"/>
+                            <circle cx="200" cy="150" r="3" fill="blue"/>
+                            <circle cx="200" cy="250" r="3" fill="blue"/>
+                            <circle cx="200" cy="300" r="3" fill="blue"/>
+
+                            <rect x="200" y="100" width="50" height="100" fill="blue" fill-opacity="0.2" stroke="blue"/>
+
+                            <polygon points="200,200 150,200 200,300" fill="blue" fill-opacity="0.2" stroke="blue"/>
+
+                            <path d="M200,200 L200,100 A100,100 0 0,0 100,200 L200,200 Z"
+                                  fill="blue" fill-opacity="0.2" stroke="blue"/>
+
+                            <!-- Тексты на осях -->
+                            <text x="100" y="195" font-size="16" text-anchor="middle">-R</text>
+                            <text x="150" y="195" font-size="16" text-anchor="middle">-R/2</text>
+                            <text x="200" y="95" font-size="16" text-anchor="middle">R</text>
+                            <text x="200" y="145" font-size="16" text-anchor="middle">R/2</text>
+                            <text x="250" y="195" font-size="16" text-anchor="middle">R/2</text>
+                            <text x="300" y="195" font-size="16" text-anchor="middle">R</text>
+                            <text x="200" y="255" font-size="16" text-anchor="middle">-R/2</text>
+                            <text x="200" y="305" font-size="16" text-anchor="middle">-R</text>
+
+                        </svg>
+                        <!--<object type="image/svg+xml" data="resources/images/coordinates.svg" id="coordinateAxes"/>
+
+                       <object type="image/svg+xml" data="resources/images/graph.svg" id="graph"/>-->
+                        <div id="circleContainer">
+                            <svg id="circle" fill="none" xmlns="http://www.w3.org/2000/svg"/>
+                        </div>
+
+<!--                        <h:form>-->
+<!--                            <h:inputHidden id="pointsData" value="#{inputBean.XGraph}" />-->
+<!--                            <h:inputHidden id="pointsData1" value="#{inputBean.YGraph}" />-->
+<!--                            <svg id="circleContainer" fill="none" xmlns="http://www.w3.org/2000/svg"/>-->
+<!--                        </h:form>-->
+<!-- spring - pageable - чтобы не подгружать весь бэк 100500 результатов-->
+                    </div>
+                    <h:commandButton id="submit" actionListener="#{requestBean.process(true)}" style="display: none;">
+                        <f:ajax execute="@form" render="resultsTable"/>
+                    </h:commandButton>
+                </h:form>
+
+            </td>
+            <td id="result" rowspan="2">
+                <div class="scroll-table">
+                    <p:dataTable value="#{resultRepository.resultsList}" var="r" id="resultsTable"
+                                 paginator="true" paginatorPosition="both" rows="3"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records">
+                        <p:column class="coords-col" style="width: 10%;">
+                            <f:facet name="header">X</f:facet>
+                            <h:outputText value="#{r.x}">
+                                <f:convertNumber maxFractionDigits="4"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column class="coords-col" style="width: 10%;">
+                            <f:facet name="header">Y</f:facet>
+                            <h:outputText value="#{r.y}">
+                                <f:convertNumber maxFractionDigits="4"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column class="coords-col" style="width: 10%;">
+                            <f:facet name="header">R</f:facet>
+                            <h:outputText value="#{r.r}">
+                                <f:convertNumber maxFractionDigits="4"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column class="time-col" style="width: 20%;">
+                            <f:facet name="header">Текущее время</f:facet>
+                            <h:outputText value="#{r.createdAt}">
+                                <f:converter converterId="localTimeConverter" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column class="time-col" style="width: 15%;">
+                            <f:facet name="header">Время работы скрипта</f:facet>
+                            <h:outputText value="#{r.executionTime}"/>
+                        </p:column>
+                        <p:column name="result-col" style="width: 35%;">
+                            <f:facet name="header" >Результат</f:facet>
+                            <h:outputText value="#{r.result ? 'Погладил котика' : 'Котик убежал'}"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </td>
+            <td rowspan="2" width="10%">
+                <h:form id="input-form">
+                    <h:inputText type="hidden" id="sendType" value="formSubmit"/>
+
+                    <table id="values">
+                        <tr>
+                            <th id="input-X">X:</th>
+                            <td class="xButtons">
+                                <p:selectOneRadio value="#{inputBean.x}" required="true">
+                                    <f:selectItem class="x-radio" name="xval" itemLabel="-2" itemValue="-2" onclick="ClickFunction(this)"/>
+                                    <f:selectItem class="x-radio" name="xval" itemLabel="-1.5" itemValue="-1.5" onclick="ClickFunction(this)"/>
+                                    <f:selectItem class="x-radio" name="xval" itemLabel="-1" itemValue="-1" onclick="ClickFunction(this)"/>
+                                    <f:selectItem class="x-radio" name="xval" itemLabel="-0.5" itemValue="-0.5" onclick="ClickFunction(this)"/>
+                                    <f:selectItem class="x-radio" name="xval" itemLabel="0" itemValue="0" onclick="ClickFunction(this)"/>
+                                    <f:selectItem class="x-radio" name="xval" itemLabel="0.5" itemValue="0.5" onclick="ClickFunction(this)"/>
+                                    <f:selectItem class="x-radio" name="xval" itemLabel="1" itemValue="1" onclick="ClickFunction(this)"/>
+                                    <f:selectItem class="x-radio" name="xval" itemLabel="1.5" itemValue="1.5" onclick="ClickFunction(this)"/>
+                                    <f:selectItem class="x-radio" name="xval" itemLabel="2" itemValue="2" onclick="ClickFunction(this)"/>
+                                    <f:ajax event="change" render="input-X" />
+                                </p:selectOneRadio>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th id="input-Y">Y:</th>
+                            <td>
+                                <h:inputText
+                                        id="yval"
+                                        value="#{inputBean.y}"
+                                        decimalSeparator="."
+                                        required="true"
+                                        maxlength="10"
+                                        autocomplete="off"
+                                        placeholder="Number from -5 to 5..."
+                                        requiredMessage="Введите Y"
+                                        validatorMessage="Значение Y должно быть в пределах от -5 до 5"
+                                        converterMessage="Значение Y должно быть целым или дробным числом">
+                                    <f:validateDoubleRange minimum="-5.0" maximum="5.0"/>
+                                    <f:ajax event="change" render="input-Y" />
+                                </h:inputText>
+                                <h:message for="yval" style="color:red"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th id="input-R">R:</th>
+                            <td>
+                                <p:spinner
+                                        id="rval"
+                                        value="#{inputBean.r}"
+                                        min="0.1"
+                                        max="3"
+                                        stepFactor="0.1"
+                                        decimalPlaces="1"
+                                        required="true"
+                                        onchange="updateSVG()">
+                                    <f:ajax event="valueChange" render="input-R" />
+                                </p:spinner>
+                                <br/>
+                                <h:message for="rval" id="rMessage" style="color:red" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <!-- Buttons Submit and Reset-->
+                            <td colspan="2">
+                                <h:commandButton actionListener="#{requestBean.process(false)}"
+                                                 value="Отправить" class="button">
+                                    <f:ajax execute="@form" render="input-form resultsTable"/>
+                                </h:commandButton>
+                                <h:commandButton id="reset" actionListener="#{resultRepository.removeResults()}" onclick="resetValues()" class="button" type="reset" value="Сбросить">
+                                    <f:ajax execute="@form" render="resultsTable"/>
+                                </h:commandButton>
+                                <p id="js-answer"/>
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
+            </td>
+        </tr>
+        <tr >
+            <h:form id="form-to-index">
+                <h:commandButton value="Стартовая страница" сlass="button" action="go-index" id="go-index-button"/>
+            </h:form>
+        </tr>
+    </table>
+</h:body>
+</html>

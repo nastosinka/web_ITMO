@@ -1,7 +1,7 @@
 ***Лабораторные работы по дисциплине веб-программирование ПИиКТ ИТМО***
 
 
-**web4 - лаб4 (Spring, React, Hibernate, PostgreSQL, JPA, JWT, Validator, авторизация пользователя)**
+**web4 - лаб4 (ключевые слова: Spring, React, Hibernate, PostgreSQL, JPA, JWT, Validator, авторизация пользователя)**
 
 *Задание:*
 
